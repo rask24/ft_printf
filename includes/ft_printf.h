@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/11 16:48:35 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/14 19:12:48 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <stdint.h>
 # include <stdbool.h>
 # include "libft.h"
 
 // for debug
 # include <stdio.h>
 # include <limits.h>
-# include <malloc/malloc.h>
+# ifdef __APPLE__
+#  include <malloc/malloc.h>
+# elif defined(__linux__)
+#  include <malloc.h>
+# endif
 
 # define DEC_BASE       "0123456789"
 # define HEX_BASE_UPPER "0123456789ABCDEF"
@@ -44,7 +49,7 @@
 
 # ifdef __APPLE__
 #  define STR_NULL "(null)"
-# elif defined(__UNIX__)
+# else
 #  define STR_NULL "(nil)"
 # endif
 
@@ -71,6 +76,6 @@ void	print_str(char *str, t_format_spec *fs, t_format_log *fl);
 
 void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned);
 
-void	padding(char c, int len);
+void	print_padding(char c, int len);
 
 #endif
