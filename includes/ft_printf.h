@@ -47,11 +47,7 @@
 
 # define PREC_NONE -1
 
-# ifdef __APPLE__
-#  define STR_NULL "(null)"
-# else
-#  define STR_NULL "(nil)"
-# endif
+# define STR_NULL "(null)"
 
 // store format result
 typedef struct s_format_log
