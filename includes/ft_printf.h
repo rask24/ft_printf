@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/14 19:12:48 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/18 17:03:06 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@
 
 # define STR_NULL "(null)"
 
+# define HEX_PREFIX_LOWER "0x"
+# define HEX_PREFIX_UPPER "0X"
+
 // store format result
-typedef struct s_format_log
+typedef struct s_format_result
 {
 	const char	*format;
 	int			cnt;
-}	t_format_log;
+}	t_format_result;
 
 // format specification
 typedef struct s_format_spec
@@ -65,12 +68,28 @@ typedef struct s_format_spec
 	char	specifier;
 }	t_format_spec;
 
+// integer infomation for print
+typedef struct s_integer_info
+{
+	bool	is_unsigned;
+	char	*base;
+	char	*prefix;
+	int		digits;
+	int		space_width;
+	int		zero_width;
+}	t_integer_info;
+
 int		ft_printf(const char *format, ...);
 
-void	print_char(char c, t_format_spec *fs, t_format_log *fl);
-void	print_str(char *str, t_format_spec *fs, t_format_log *fl);
+void	print_char(char c, t_format_spec *fs, t_format_result *fr);
+void	print_str(char *str, t_format_spec *fs, t_format_result *fr);
+
+void	print_nbr(intmax_t nb, t_format_spec *fs, t_format_result *fr);
 
 void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned);
+// number of digits except for signature
+int		digits_base(intmax_t nb, size_t radix, bool is_negative);
+int		ft_max(int a, int b);
 
 void	print_padding(char c, int len);
 

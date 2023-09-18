@@ -6,33 +6,57 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:48:21 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/07 22:07:09 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/15 18:36:52 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putnbr_base_rec(uintmax_t l_nb, size_t radix, const char *base)
+static void	ft_putnbr_base_rec(uintmax_t uim_nb, size_t radix, const char *base)
 {
-	if (l_nb / radix)
-		ft_putnbr_base_rec(l_nb / radix, radix, base);
-	ft_putchar_fd(base[l_nb % radix], 1);
+	if (uim_nb / radix)
+		ft_putnbr_base_rec(uim_nb / radix, radix, base);
+	ft_putchar_fd(base[uim_nb % radix], STDOUT_FILENO);
 }
 
 void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned)
 {
-	uintmax_t	ul_nb;
+	uintmax_t	uim_nb;
 	size_t		radix;
 
 	radix = ft_strlen(base);
 	if (radix < 2 || !base)
 		return ;
 	if (nb < 0 && !is_unsigned)
-	{
-		ul_nb = -nb;
-		ft_putchar_fd('-', 1);
-	}
+		uim_nb = -nb;
 	else
-		ul_nb = nb;
-	ft_putnbr_base_rec(ul_nb, radix, base);
+		uim_nb = nb;
+	ft_putnbr_base_rec(uim_nb, radix, base);
+}
+
+int	digits_base(intmax_t nb, size_t radix, bool is_unsigned)
+{
+	uintmax_t	uim_nb;
+	int			digits;
+
+	if (nb == 0)
+		return (1);
+	if (nb < 0 && !is_unsigned)
+		uim_nb = -nb;
+	else
+		uim_nb = nb;
+	digits = 0;
+	while (uim_nb)
+	{
+		uim_nb /= radix;
+		digits++;
+	}
+	return (digits);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a < b)
+		return (b);
+	return (a);
 }

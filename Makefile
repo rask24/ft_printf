@@ -5,6 +5,7 @@ LIBFT_DIR = $(SRC_DIR)/libft
 LIBFT_NAME = libft.a
 SRCS = $(SRC_DIR)/ft_printf.c \
 		$(SRC_DIR)/print_ascii.c \
+		$(SRC_DIR)/print_nbr.c \
 		$(SRC_DIR)/print_utils.c \
 		$(SRC_DIR)/nbr_utils.c
 OBJS = $(SRCS:.c=.o)
@@ -32,6 +33,8 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+bonus: all
 
 test: main.c $(NAME)
 	$(CC) main.c $(NAME) -I $(INC_DIR)

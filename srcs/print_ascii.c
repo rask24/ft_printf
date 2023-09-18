@@ -6,13 +6,13 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:02:59 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/14 19:13:14 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/18 17:00:34 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_char(char c, t_format_spec *fs, t_format_log *fl)
+void	print_char(char c, t_format_spec *fs, t_format_result *fr)
 {
 	if (fs->width && !(fs->flag & FLAG_MINUS) && !(fs->flag & FLAG_ZERO))
 		print_padding(' ', fs->width - 1);
@@ -22,12 +22,12 @@ void	print_char(char c, t_format_spec *fs, t_format_log *fl)
 	if (fs->width && fs->flag & FLAG_MINUS)
 		print_padding(' ', fs->width - 1);
 	if (fs->width)
-		fl->cnt += fs->width;
+		fr->cnt += fs->width;
 	else
-		fl->cnt++;
+		fr->cnt++;
 }
 
-void	print_str(char *str, t_format_spec *fs, t_format_log *fl)
+void	print_str(char *str, t_format_spec *fs, t_format_result *fr)
 {
 	int	str_len;
 
@@ -41,8 +41,5 @@ void	print_str(char *str, t_format_spec *fs, t_format_log *fl)
 	write(STDOUT_FILENO, str, str_len);
 	if (fs->width && fs->flag & FLAG_MINUS)
 		print_padding(' ', fs->width - str_len);
-	if (fs->width)
-		fl->cnt += fs->width;
-	else
-		fl->cnt += str_len;
+	fr->cnt += ft_max(fs->width, str_len);
 }
