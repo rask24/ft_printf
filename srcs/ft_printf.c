@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:59:33 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/18 16:41:49 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/22 23:01:07 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void	format_dispather(t_format_spec *fs,
 		print_nbr(va_arg(*ap, int), fs, fr);
 	else if (ft_strchr("uxX", fs->specifier))
 		print_nbr(va_arg(*ap, unsigned int), fs, fr);
+	else if (fs->specifier == 'p')
+		print_address(va_arg(*ap, void *), fs, fr);
 }
 
 int	ft_printf(const char *format, ...)

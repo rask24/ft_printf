@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/18 17:53:15 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/22 23:25:58 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,16 @@ void	print_nbr(intmax_t nb, t_format_spec *fs, t_format_result *fr)
 	if (info.zero_width > 0)
 		fr->cnt += info.zero_width;
 	fr->cnt += info.digits;
+}
+
+void	print_address(void *ptr, t_format_spec *fs, t_format_result *fr)
+{
+	uintmax_t	address;
+
+	address = (uintmax_t)ptr;
+	(void)fs;
+	ft_putstr_fd(HEX_PREFIX_LOWER, STDOUT_FILENO);
+	ft_putnbr_base(address, HEX_BASE_LOEWR, true);
+	fr->cnt += digits_base(address, ft_strlen(HEX_BASE_LOEWR), false)
+		+ ft_strlen(HEX_PREFIX_LOWER);
 }

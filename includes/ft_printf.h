@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/18 17:03:06 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/23 11:30:56 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	print_char(char c, t_format_spec *fs, t_format_result *fr);
 void	print_str(char *str, t_format_spec *fs, t_format_result *fr);
 
 void	print_nbr(intmax_t nb, t_format_spec *fs, t_format_result *fr);
+
+void	print_address(void *ptr, t_format_spec *fs, t_format_result *fr);
 
 void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned);
 // number of digits except for signature
