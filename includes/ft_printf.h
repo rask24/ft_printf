@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/23 11:30:56 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/02 03:34:08 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
-# include "libft.h"
+# include "../srcs/libft/libft.h"
 
 // for debug
+// TODO DELETE
 # include <stdio.h>
 # include <limits.h>
 # ifdef __APPLE__
