@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 01:41:16 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/03 01:43:23 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/24 18:28:30 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long	ln;
+	unsigned int	un;
 
-	ln = n;
-	if (ln < 0)
+	if (n < 0)
 	{
-		ln *= -1;
+		un = -n;
 		ft_putchar_fd('-', fd);
 	}
-	if (ln / 10)
-		ft_putnbr_fd(ln / 10, fd);
-	ft_putchar_fd('0' + ln % 10, fd);
+	else
+		un = n;
+	if (un / 10)
+		ft_putnbr_fd(un / 10, fd);
+	ft_putchar_fd('0' + un % 10, fd);
 }

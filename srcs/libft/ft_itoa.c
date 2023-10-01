@@ -6,13 +6,13 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 01:28:34 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/04 12:29:31 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/24 17:07:48 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	calc_digits(long n)
+static int	calc_digits(unsigned int n)
 {
 	int	digits;
 
@@ -29,27 +29,27 @@ static int	calc_digits(long n)
 
 char	*ft_itoa(int n)
 {
-	char	*ret;
-	long	ln;
-	int		digits;
-	int		is_negative;
+	char			*ret;
+	unsigned int	un;
+	int				digits;
+	int				is_negative;
 
-	ln = n;
-	is_negative = ln < 0;
-	digits = calc_digits(ln);
+	is_negative = n < 0;
+	if (is_negative)
+		un = -n;
+	else
+		un = n;
+	digits = calc_digits(un);
 	ret = malloc(digits + is_negative + 1);
 	if (!ret)
 		return (NULL);
 	if (is_negative)
-	{
 		ret[0] = '-';
-		ln *= -1;
-	}
 	ret[digits + is_negative] = '\0';
 	while (digits--)
 	{
-		ret[digits + is_negative] = '0' + ln % 10;
-		ln /= 10;
+		ret[digits + is_negative] = '0' + un % 10;
+		un /= 10;
 	}
 	return (ret);
 }

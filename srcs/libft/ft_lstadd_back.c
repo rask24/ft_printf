@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 19:22:37 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/04 19:24:25 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/22 20:03:13 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*cur;
 
+	if (!lst)
+		return ;
 	if (!*lst)
 	{
 		*lst = new;

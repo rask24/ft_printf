@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:54:42 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/03 01:00:06 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/24 16:10:31 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*u;
+	const unsigned char	*u;
 
-	u = (unsigned char *)s;
+	u = (const unsigned char *)s;
 	while (n--)
 	{
 		if (*u == (unsigned char)c)

@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 01:21:14 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/06 13:21:39 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/25 13:20:06 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*u_dst;
-	unsigned char	*u_src;
+	unsigned char		*u_dst;
+	const unsigned char	*u_src;
 
 	if (!dst && !src)
 		return (dst);
+	u_dst = (unsigned char *)dst;
+	u_src = (const unsigned char *)src;
 	if (dst < src)
 	{
-		u_dst = (unsigned char *)dst;
-		u_src = (unsigned char *)src;
 		while (len--)
 			*u_dst++ = *u_src++;
 	}
 	else
 	{
-		u_dst = (unsigned char *)dst + len;
-		u_src = (unsigned char *)src + len;
 		while (len--)
-			*--u_dst = *--u_src;
+			u_dst[len] = u_src[len];
 	}
 	return (dst);
 }
