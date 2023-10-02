@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/02 03:34:08 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/02 12:08:15 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_format_spec
 // integer infomation for print
 typedef struct s_integer_info
 {
-	bool	is_unsigned;
+	bool	is_signed;
 	char	*base;
 	char	*prefix;
 	int		digits;
@@ -89,7 +89,7 @@ void	print_nbr(intmax_t nb, t_format_spec *fs, t_format_result *fr);
 
 void	print_address(void *ptr, t_format_spec *fs, t_format_result *fr);
 
-void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned);
+void	ft_putnbr_base(intmax_t nb, const char *base, bool is_signed);
 // number of digits except for signature
 int		digits_base(intmax_t nb, size_t radix, bool is_negative);
 int		ft_max(int a, int b);

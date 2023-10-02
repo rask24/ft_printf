@@ -6,16 +6,16 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/22 23:25:58 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/02 12:08:02 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	init_integer_info(t_integer_info *info,
-				intmax_t nb, t_format_spec *fs)
+static void	init_integer_info(
+				t_integer_info *info, intmax_t nb, t_format_spec *fs)
 {
-	info->is_unsigned = !(fs->specifier == 'd' || fs->specifier == 'i');
+	info->is_signed = fs->specifier == 'd' || fs->specifier == 'i';
 	if (fs->specifier == 'x')
 		info->base = HEX_BASE_LOEWR;
 	else if (fs->specifier == 'X')
@@ -23,19 +23,19 @@ static void	init_integer_info(t_integer_info *info,
 	else
 		info->base = DEC_BASE;
 	info->prefix = "";
-	if (fs->flag & FLAG_HASH && info->is_unsigned
+	if (fs->flag & FLAG_HASH && !info->is_signed
 		&& fs->specifier == 'x' && nb)
 		info->prefix = HEX_PREFIX_LOWER;
-	else if (fs->flag & FLAG_HASH && info->is_unsigned
+	else if (fs->flag & FLAG_HASH && !info->is_signed
 		&& fs->specifier == 'X' && nb)
 		info->prefix = HEX_PREFIX_UPPER;
-	else if (!info->is_unsigned && nb < 0)
+	else if (info->is_signed && nb < 0)
 		info->prefix = "-";
-	else if (!info->is_unsigned && fs->flag & FLAG_PLUS)
+	else if (info->is_signed && fs->flag & FLAG_PLUS)
 		info->prefix = "+";
-	else if (!info->is_unsigned && fs->flag & FLAG_SPACE)
+	else if (info->is_signed && fs->flag & FLAG_SPACE)
 		info->prefix = " ";
-	info->digits = digits_base(nb, ft_strlen(info->base), info->is_unsigned);
+	info->digits = digits_base(nb, ft_strlen(info->base), info->is_signed);
 	info->space_width = fs->width
 		- ft_max(fs->precision, info->digits) - ft_strlen(info->prefix);
 	info->zero_width = fs->precision - info->digits;
@@ -51,7 +51,7 @@ void	print_nbr(intmax_t nb, t_format_spec *fs, t_format_result *fr)
 	if (*info.prefix)
 		ft_putstr_fd(info.prefix, STDOUT_FILENO);
 	print_padding('0', info.zero_width);
-	ft_putnbr_base(nb, info.base, info.is_unsigned);
+	ft_putnbr_base(nb, info.base, info.is_signed);
 	if (fs->flag & FLAG_MINUS)
 		print_padding(' ', info.space_width);
 	if (info.space_width > 0)
