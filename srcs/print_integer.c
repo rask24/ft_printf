@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/02 23:29:39 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 01:35:11 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ static void	init_width(
 				t_integer_info *info, intmax_t nb, t_format_spec *fs)
 {
 	info->prefix_width = ft_strlen(info->prefix);
-	info->digits = digits_base(nb, ft_strlen(info->base), info->is_signed);
-	if (fs->width && fs->flag & FLAG_ZERO)
+	if (nb == 0 && fs->precision == 0)
+		info->digits = 0;
+	else
+		info->digits = digits_base(nb, ft_strlen(info->base), info->is_signed);
+	if (fs->width && fs->precision == PREC_NONE && fs->flag & FLAG_ZERO)
 	{
 		info->space_width = 0;
 		info->zero_width = ft_max(fs->width
@@ -68,7 +71,8 @@ void	print_integer(intmax_t nb, t_format_spec *fs, t_format_result *fr)
 		ft_putstr_fd(info.prefix, STDOUT_FILENO);
 	if (info.zero_width)
 		print_padding('0', info.zero_width);
-	ft_putnbr_base(nb, info.base, info.is_signed);
+	if (info.digits)
+		ft_putnbr_base(nb, info.base, info.is_signed);
 	if (fs->flag & FLAG_MINUS && info.space_width)
 		print_padding(' ', info.space_width);
 	fr->cnt += info.space_width
