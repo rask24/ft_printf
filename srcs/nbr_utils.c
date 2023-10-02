@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 18:48:21 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/15 18:36:52 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/02 12:06:07 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_putnbr_base_rec(uintmax_t uim_nb, size_t radix, const char *base)
 	ft_putchar_fd(base[uim_nb % radix], STDOUT_FILENO);
 }
 
-void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned)
+void	ft_putnbr_base(intmax_t nb, const char *base, bool is_signed)
 {
 	uintmax_t	uim_nb;
 	size_t		radix;
@@ -27,21 +27,21 @@ void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned)
 	radix = ft_strlen(base);
 	if (radix < 2 || !base)
 		return ;
-	if (nb < 0 && !is_unsigned)
+	if (nb < 0 && is_signed)
 		uim_nb = -nb;
 	else
 		uim_nb = nb;
 	ft_putnbr_base_rec(uim_nb, radix, base);
 }
 
-int	digits_base(intmax_t nb, size_t radix, bool is_unsigned)
+int	digits_base(intmax_t nb, size_t radix, bool is_signed)
 {
 	uintmax_t	uim_nb;
 	int			digits;
 
 	if (nb == 0)
 		return (1);
-	if (nb < 0 && !is_unsigned)
+	if (nb < 0 && is_signed)
 		uim_nb = -nb;
 	else
 		uim_nb = nb;

@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 12:49:03 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/06 12:06:18 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/23 02:46:54 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	if (!ret)
 		return (NULL);
 	ft_strlcpy(ret, s1, s1_len + 1);
-	ft_strlcpy(ret + s1_len, s2, s1_len + s2_len + 1);
+	ft_strlcpy(ret + s1_len, s2, s2_len + 1);
 	return (ret);
 }

@@ -4,8 +4,8 @@ SRC_DIR = srcs
 LIBFT_DIR = $(SRC_DIR)/libft
 LIBFT_NAME = libft.a
 SRCS = $(SRC_DIR)/ft_printf.c \
-		$(SRC_DIR)/print_ascii.c \
-		$(SRC_DIR)/print_nbr.c \
+		$(SRC_DIR)/print_string.c \
+		$(SRC_DIR)/print_integer.c \
 		$(SRC_DIR)/print_utils.c \
 		$(SRC_DIR)/nbr_utils.c
 OBJS = $(SRCS:.c=.o)

@@ -6,13 +6,17 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:06:19 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/04 12:22:57 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/25 13:09:15 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	return (ft_memset(s, 0, n));
+	unsigned char	*u;
+
+	u = (unsigned char *)s;
+	while (n--)
+		*u++ = 0;
 }

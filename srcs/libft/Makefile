@@ -1,4 +1,6 @@
 NAME = libft.a
+CFLAGS = -Wall -Wextra -Werror
+ARFLAGS = cr
 SRCS = ft_atoi.c \
 		ft_atoi.c \
 		ft_bzero.c \
@@ -36,6 +38,7 @@ SRCS = ft_atoi.c \
 		ft_tolower.c \
 		ft_toupper.c
 OBJS = $(SRCS:.c=.o)
+
 BONUS_SRCS = ft_lstadd_back.c \
 				ft_lstadd_front.c \
 				ft_lstclear.c \
@@ -46,16 +49,20 @@ BONUS_SRCS = ft_lstadd_back.c \
 				ft_lstnew.c \
 				ft_lstsize.c
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
-ARFLAGS = cr
+
+ifdef BONUS
+	LIBFT_OBJS = $(OBJS) $(BONUS_OBJS)
+else
+	LIBFT_OBJS = $(OBJS)
+endif
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT_OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
 bonus: $(OBJS) $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $^
+	make BONUS=42
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

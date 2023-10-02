@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 22:09:19 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/06 13:10:43 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/25 14:11:51 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ static size_t	count_words(const char *s, char c)
 
 static char	**free_strs(char **strs, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-		free(strs[i++]);
+	while (n--)
+		free(strs[n]);
 	free(strs);
 	return (NULL);
 }

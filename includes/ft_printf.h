@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/23 11:30:56 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/02 23:16:20 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
-# include "libft.h"
+# include "../srcs/libft/libft.h"
 
 // for debug
+// TODO DELETE
 # include <stdio.h>
 # include <limits.h>
 # ifdef __APPLE__
@@ -71,12 +72,13 @@ typedef struct s_format_spec
 // integer infomation for print
 typedef struct s_integer_info
 {
-	bool	is_unsigned;
+	bool	is_signed;
 	char	*base;
 	char	*prefix;
-	int		digits;
 	int		space_width;
 	int		zero_width;
+	int		prefix_width;
+	int		digits;
 }	t_integer_info;
 
 int		ft_printf(const char *format, ...);
@@ -84,13 +86,13 @@ int		ft_printf(const char *format, ...);
 void	print_char(char c, t_format_spec *fs, t_format_result *fr);
 void	print_str(char *str, t_format_spec *fs, t_format_result *fr);
 
-void	print_nbr(intmax_t nb, t_format_spec *fs, t_format_result *fr);
+void	print_integer(intmax_t nb, t_format_spec *fs, t_format_result *fr);
 
-void	print_address(void *ptr, t_format_spec *fs, t_format_result *fr);
+void	print_address(uintptr_t ptr, t_format_spec *fs, t_format_result *fr);
 
-void	ft_putnbr_base(intmax_t nb, const char *base, bool is_unsigned);
+void	ft_putnbr_base(intmax_t nb, const char *base, bool is_signed);
 // number of digits except for signature
-int		digits_base(intmax_t nb, size_t radix, bool is_negative);
+int		digits_base(intmax_t nb, size_t radix, bool is_signed);
 int		ft_max(int a, int b);
 
 void	print_padding(char c, int len);

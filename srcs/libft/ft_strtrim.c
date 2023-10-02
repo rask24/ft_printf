@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 23:01:26 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/06 12:28:50 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/23 02:52:31 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 char	*ft_strtrim(const char *s1, const char *set)
 {
 	char	*ret;
-	long	begin;
-	long	end;
+	size_t	begin;
+	size_t	end;
 
 	if (!s1 || !set)
 		return (NULL);
 	begin = 0;
-	while (ft_strchr(set, s1[begin]))
+	while (s1[begin] && ft_strchr(set, s1[begin]))
 		begin++;
-	end = ft_strlen(s1) - 1;
-	while (begin < end && ft_strchr(set, s1[end]))
-		end--;
-	if (end < begin)
+	if (begin == ft_strlen(s1))
 		return (ft_strdup(""));
+	end = ft_strlen(s1) - 1;
+	while (ft_strchr(set, s1[end]))
+		end--;
 	ret = malloc(end - begin + 2);
 	if (!ret)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 22:19:08 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/04 22:26:47 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/29 14:24:38 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,26 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*ret;
-	t_list	*tmp;
+	t_list	*new_lst;
+	t_list	*cur;
 
+	if (!f || !del)
+		return (NULL);
 	ret = NULL;
+	cur = NULL;
 	while (lst)
 	{
-		tmp = ft_lstnew(f(lst->content));
-		if (!tmp)
+		new_lst = ft_lstnew(f(lst->content));
+		if (!new_lst)
 		{
-			ft_lstclear(&ret, del);
+			ft_lstclear(&new_lst, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&ret, tmp);
+		if (cur)
+			cur->next = new_lst;
+		else
+			ret = new_lst;
+		cur = new_lst;
 		lst = lst->next;
 	}
 	return (ret);

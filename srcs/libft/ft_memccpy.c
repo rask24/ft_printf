@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 00:13:40 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/03 02:03:46 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/09/24 15:45:48 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char	*u_dst;
-	unsigned char	*u_src;
+	unsigned char		*u_dst;
+	const unsigned char	*u_src;
 
 	u_dst = (unsigned char *)dst;
-	u_src = (unsigned char *)src;
+	u_src = (const unsigned char *)src;
 	while (n--)
 	{
 		if (*u_src == (unsigned char)c)
