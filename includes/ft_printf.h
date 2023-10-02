@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/02 12:08:15 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/02 22:51:14 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ typedef struct s_integer_info
 	bool	is_signed;
 	char	*base;
 	char	*prefix;
-	int		digits;
 	int		space_width;
 	int		zero_width;
+	int		prefix_width;
+	int		digits;
 }	t_integer_info;
 
 int		ft_printf(const char *format, ...);
