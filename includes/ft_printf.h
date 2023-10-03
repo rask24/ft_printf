@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 14:23:35 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:14:30 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@
 
 # define PREC_NONE -1
 
+# define SIZE_NONE 0
+# define SIZE_LL   1
+# define SIZE_L    2
+# define SIZE_HH   3
+# define SIZE_H    4
+
 # define STR_NULL "(null)"
 
 # define HEX_PREFIX_LOWER "0x"
@@ -66,6 +72,7 @@ typedef struct s_format_spec
 	int		flag;
 	int		width;
 	int		precision;
+	int		size;
 	char	specifier;
 }	t_format_spec;
 
@@ -82,8 +89,9 @@ typedef struct s_integer_info
 }	t_integer_info;
 
 int		ft_printf(const char *format, ...);
-
 void	parse_spec(t_format_spec *fs, t_format_result *fr, va_list *ap);
+void	format_dispatcher(
+			t_format_spec *fs, t_format_result *fr, va_list *ap);
 
 void	print_char(char c, t_format_spec *fs, t_format_result *fr);
 void	print_str(char *str, t_format_spec *fs, t_format_result *fr);
