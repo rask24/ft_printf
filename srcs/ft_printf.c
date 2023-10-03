@@ -6,38 +6,11 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:59:33 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/02 23:10:50 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 14:17:18 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void	parse_spec(t_format_spec *fs, t_format_result *fr)
-{
-	ptrdiff_t	index;
-
-	fr->format++;
-	while (true)
-	{
-		index = ft_strchr(FLAGS, *fr->format) - FLAGS;
-		if (index < 0)
-			break ;
-		fs->flag |= 1 << index;
-		fr->format++;
-	}
-	fs->width = ft_atoi(fr->format);
-	while (ft_isdigit(*fr->format))
-		fr->format++;
-	if (*fr->format == '.')
-	{
-		fr->format++;
-		fs->precision = ft_atoi(fr->format);
-		while (ft_isdigit(*fr->format))
-			fr->format++;
-	}
-	fs->specifier = *fr->format;
-	fr->format++;
-}
 
 static void	format_dispather(t_format_spec *fs,
 				t_format_result *fr, va_list *ap)
@@ -76,7 +49,7 @@ int	ft_printf(const char *format, ...)
 		if (*fr.format == '%')
 		{
 			fs = (t_format_spec){FLAG_NONE, WIDTH_NONE, PREC_NONE, '\0'};
-			parse_spec(&fs, &fr);
+			parse_spec(&fs, &fr, &ap);
 			format_dispather(&fs, &fr, &ap);
 		}
 		else
