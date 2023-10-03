@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 16:16:19 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:49:54 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,8 @@ void	format_dispatcher(
 	}
 	else if (fs->specifier == 'd' || fs->specifier == 'i')
 		signed_integer_dispatcher(fs, fr, ap);
-	else if (ft_strchr("uxX", fs->specifier))
+	else if (ft_strchr("uxXo", fs->specifier))
 		unsigned_integer_dispatcher(fs, fr, ap);
 	else if (fs->specifier == 'p')
 		print_address(va_arg(*ap, uintptr_t), fs, fr);
 }
-

@@ -41,4 +41,4 @@ test: main.c $(NAME)
 	$(CC) main.c $(NAME) -I $(INC_DIR)
 	./a.out | cat -e 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
