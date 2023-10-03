@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ascii.c                                      :+:      :+:    :+:   */
+/*   print_string.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:02:59 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/18 17:00:34 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 13:32:16 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	print_padding(char c, int len)
+{
+	while (len-- > 0)
+		ft_putchar_fd(c, STDOUT_FILENO);
+}
 
 void	print_char(char c, t_format_spec *fs, t_format_result *fr)
 {
