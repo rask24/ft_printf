@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 16:14:30 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:34:09 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
+
 # include "../srcs/libft/libft.h"
 
 // for debug
@@ -31,6 +32,7 @@
 #  include <malloc.h>
 # endif
 
+# define OCT_BASE       "01234567"
 # define DEC_BASE       "0123456789"
 # define HEX_BASE_UPPER "0123456789ABCDEF"
 # define HEX_BASE_LOEWR "0123456789abcdef"
@@ -56,6 +58,7 @@
 
 # define STR_NULL "(null)"
 
+# define OCT_PREFIX       "0"
 # define HEX_PREFIX_LOWER "0x"
 # define HEX_PREFIX_UPPER "0X"
 

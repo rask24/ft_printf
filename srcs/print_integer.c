@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 01:35:11 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:49:24 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,8 @@ static void	init_width(
 	}
 }
 
-static void	init_integer_info(
-				t_integer_info *info, intmax_t nb, t_format_spec *fs)
+static void	init_prefix(t_integer_info *info, intmax_t nb, t_format_spec *fs)
 {
-	info->is_signed = fs->specifier == 'd' || fs->specifier == 'i';
-	if (fs->specifier == 'x')
-		info->base = HEX_BASE_LOEWR;
-	else if (fs->specifier == 'X')
-		info->base = HEX_BASE_UPPER;
-	else
-		info->base = DEC_BASE;
 	info->prefix = "";
 	if (info->is_signed && nb < 0)
 		info->prefix = "-";
@@ -57,7 +49,30 @@ static void	init_integer_info(
 	else if (fs->flag & FLAG_HASH
 		&& !info->is_signed && fs->specifier == 'X' && nb)
 		info->prefix = HEX_PREFIX_UPPER;
+}
+
+static void	init_integer_info(
+				t_integer_info *info, intmax_t nb, t_format_spec *fs)
+{
+	info->is_signed = fs->specifier == 'd' || fs->specifier == 'i';
+	if (fs->specifier == 'x')
+		info->base = HEX_BASE_LOEWR;
+	else if (fs->specifier == 'X')
+		info->base = HEX_BASE_UPPER;
+	else if (fs->specifier == 'o')
+		info->base = OCT_BASE;
+	else
+		info->base = DEC_BASE;
+	init_prefix(info, nb, fs);
 	init_width(info, nb, fs);
+	if (fs->flag & FLAG_HASH && !info->is_signed && fs->specifier == 'o'
+		&& !info->zero_width && (nb || fs->precision == 0))
+	{
+		info->prefix = OCT_PREFIX;
+		info->prefix_width = 1;
+		if (info->space_width)
+			info->space_width--;
+	}
 }
 
 void	print_integer(intmax_t nb, t_format_spec *fs, t_format_result *fr)
