@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 16:49:54 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:26:41 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,46 @@
 static void	signed_integer_dispatcher(
 		t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
-	if (fs->size == SIZE_NONE)
+	if (fs->length == LENGTH_NONE)
 		print_integer(va_arg(*ap, int), fs, fr);
-	else if (fs->size == SIZE_L)
+	else if (fs->length == LENGTH_L)
 		print_integer(va_arg(*ap, long), fs, fr);
-	else if (fs->size == SIZE_LL)
+	else if (fs->length == LENGTH_LL)
 		print_integer(va_arg(*ap, long long), fs, fr);
-	else if (fs->size == SIZE_H)
+	else if (fs->length == LENGTH_H)
 		print_integer((short)va_arg(*ap, int), fs, fr);
-	else if (fs->size == SIZE_HH)
+	else if (fs->length == LENGTH_HH)
 		print_integer((char)va_arg(*ap, int), fs, fr);
 }
 
 static void	unsigned_integer_dispatcher(
 		t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
-	if (fs->size == SIZE_NONE)
+	if (fs->length == LENGTH_NONE)
 		print_integer(va_arg(*ap, unsigned int), fs, fr);
-	else if (fs->size == SIZE_L)
+	else if (fs->length == LENGTH_L)
 		print_integer(va_arg(*ap, unsigned long), fs, fr);
-	else if (fs->size == SIZE_LL)
+	else if (fs->length == LENGTH_LL)
 		print_integer(va_arg(*ap, unsigned long long), fs, fr);
-	else if (fs->size == SIZE_H)
+	else if (fs->length == LENGTH_H)
 		print_integer((unsigned short)va_arg(*ap, int), fs, fr);
-	else if (fs->size == SIZE_HH)
+	else if (fs->length == LENGTH_HH)
 		print_integer((unsigned char)va_arg(*ap, int), fs, fr);
 }
 
 void	format_dispatcher(
 			t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
-	char	*str;
-
-	if (fs->specifier == '%')
+	if (fs->conversion == '%')
 		print_char('%', fs, fr);
-	else if (fs->specifier == 'c')
+	else if (fs->conversion == 'c')
 		print_char(va_arg(*ap, int), fs, fr);
-	else if (fs->specifier == 's')
-	{
-		str = va_arg(*ap, char *);
-		if (!str)
-			str = STR_NULL;
-		print_str(str, fs, fr);
-	}
-	else if (fs->specifier == 'd' || fs->specifier == 'i')
+	else if (fs->conversion == 's')
+		print_str(va_arg(*ap, char *), fs, fr);
+	else if (fs->conversion == 'd' || fs->conversion == 'i')
 		signed_integer_dispatcher(fs, fr, ap);
-	else if (ft_strchr("uxXo", fs->specifier))
+	else if (ft_strchr("uxXo", fs->conversion))
 		unsigned_integer_dispatcher(fs, fr, ap);
-	else if (fs->specifier == 'p')
+	else if (fs->conversion == 'p')
 		print_address(va_arg(*ap, uintptr_t), fs, fr);
 }
