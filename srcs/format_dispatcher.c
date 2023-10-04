@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:44:44 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:35:01 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static void	signed_integer_dispatcher(
 		print_integer((short)va_arg(*ap, int), fs, fr);
 	else if (fs->length == LENGTH_HH)
 		print_integer((char)va_arg(*ap, int), fs, fr);
+	else if (fs->length == LENGTH_J)
+		print_integer(va_arg(*ap, intmax_t), fs, fr);
+	else if (fs->length == LENGTH_T)
+		print_integer(va_arg(*ap, ptrdiff_t), fs, fr);
+	else if (fs->length == LENGTH_Z)
+		print_integer(va_arg(*ap, ssize_t), fs, fr);
 }
 
 static void	unsigned_integer_dispatcher(
@@ -40,6 +46,12 @@ static void	unsigned_integer_dispatcher(
 		print_integer((unsigned short)va_arg(*ap, int), fs, fr);
 	else if (fs->length == LENGTH_HH)
 		print_integer((unsigned char)va_arg(*ap, int), fs, fr);
+	else if (fs->length == LENGTH_J)
+		print_integer(va_arg(*ap, uintmax_t), fs, fr);
+	else if (fs->length == LENGTH_T)
+		print_integer(va_arg(*ap, ptrdiff_t), fs, fr);
+	else if (fs->length == LENGTH_Z)
+		print_integer(va_arg(*ap, size_t), fs, fr);
 }
 
 static void	n_dispatcher(
@@ -55,6 +67,12 @@ static void	n_dispatcher(
 		*va_arg(*ap, short *) = fr->cnt;
 	else if (fs->length == LENGTH_HH)
 		*va_arg(*ap, signed char *) = fr->cnt;
+	else if (fs->length == LENGTH_J)
+		*va_arg(*ap, intmax_t *) = fr->cnt;
+	else if (fs->length == LENGTH_T)
+		*va_arg(*ap, ptrdiff_t *) = fr->cnt;
+	else if (fs->length == LENGTH_Z)
+		*va_arg(*ap, ssize_t *) = fr->cnt;
 }
 
 void	format_dispatcher(

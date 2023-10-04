@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:17:21 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:18:13 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:16:31 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,13 @@ static void	parse_specifier(t_format_spec *fs, t_format_result *fr)
 		fs->length = LENGTH_HH;
 	else if (!ft_strncmp(fr->format, "h", 1))
 		fs->length = LENGTH_H;
-	while (*fr->format == 'l' || *fr->format == 'h')
+	else if (!ft_strncmp(fr->format, "j", 1))
+		fs->length = LENGTH_J;
+	else if (!ft_strncmp(fr->format, "t", 1))
+		fs->length = LENGTH_T;
+	else if (!ft_strncmp(fr->format, "z", 1))
+		fs->length = LENGTH_Z;
+	while (ft_strchr("lhjtz", *fr->format))
 		fr->format++;
 	fs->conversion = *fr->format;
 }
