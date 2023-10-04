@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/05 01:15:55 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:35:01 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ static void	n_dispatcher(
 		*va_arg(*ap, short *) = fr->cnt;
 	else if (fs->length == LENGTH_HH)
 		*va_arg(*ap, signed char *) = fr->cnt;
+	else if (fs->length == LENGTH_J)
+		*va_arg(*ap, intmax_t *) = fr->cnt;
+	else if (fs->length == LENGTH_T)
+		*va_arg(*ap, ptrdiff_t *) = fr->cnt;
+	else if (fs->length == LENGTH_Z)
+		*va_arg(*ap, ssize_t *) = fr->cnt;
 }
 
 void	format_dispatcher(
