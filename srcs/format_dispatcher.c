@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:23:43 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:26:41 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,12 @@ static void	unsigned_integer_dispatcher(
 void	format_dispatcher(
 			t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
-	char	*str;
-
 	if (fs->conversion == '%')
 		print_char('%', fs, fr);
 	else if (fs->conversion == 'c')
 		print_char(va_arg(*ap, int), fs, fr);
 	else if (fs->conversion == 's')
-	{
-		str = va_arg(*ap, char *);
-		if (!str)
-			str = STR_NULL;
-		print_str(str, fs, fr);
-	}
+		print_str(va_arg(*ap, char *), fs, fr);
 	else if (fs->conversion == 'd' || fs->conversion == 'i')
 		signed_integer_dispatcher(fs, fr, ap);
 	else if (ft_strchr("uxXo", fs->conversion))

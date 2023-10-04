@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 17:02:59 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:23:02 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:27:02 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	print_str(char *str, t_format_spec *fs, t_format_result *fr)
 {
 	int	str_len;
 
+	if (!str)
+		str = STR_NULL;
 	str_len = ft_strlen(str);
 	if (fs->precision != PREC_NONE && fs->precision < str_len)
 		str_len = fs->precision;
