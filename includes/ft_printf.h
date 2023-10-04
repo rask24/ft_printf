@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:41:31 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:09:54 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@
 # define PREC_NONE -1
 
 # define LENGTH_NONE 0
-# define LENGTH_LL   1
-# define LENGTH_L    2
-# define LENGTH_HH   3
-# define LENGTH_H    4
+# define LENGTH_L    1
+# define LENGTH_LL   2
+# define LENGTH_H    3
+# define LENGTH_HH   4
+# define LENGTH_J    5
+# define LENGTH_T    6
+# define LENGTH_Z    7
 
 # define STR_NULL "(null)"
 
