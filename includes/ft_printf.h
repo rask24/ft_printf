@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/05 01:09:54 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/05 01:42:06 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@
 # include <stdbool.h>
 
 # include "../srcs/libft/libft.h"
-
-// for debug
-// TODO DELETE
-# include <stdio.h>
-# include <limits.h>
-# ifdef __APPLE__
-#  include <malloc/malloc.h>
-# elif defined(__linux__)
-#  include <malloc.h>
-# endif
 
 # define OCT_BASE       "01234567"
 # define DEC_BASE       "0123456789"
