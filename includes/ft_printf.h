@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:11:05 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:41:31 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,12 @@
 # define HEX_PREFIX_LOWER "0x"
 # define HEX_PREFIX_UPPER "0X"
 
-// store format result
 typedef struct s_format_result
 {
 	const char	*format;
 	int			cnt;
 }	t_format_result;
 
-// format specification
 typedef struct s_format_spec
 {
 	int		flags;
@@ -79,7 +77,6 @@ typedef struct s_format_spec
 	char	conversion;
 }	t_format_spec;
 
-// integer infomation for print
 typedef struct s_integer_info
 {
 	bool	is_signed;
