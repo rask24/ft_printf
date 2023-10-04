@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:17:21 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 15:51:56 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:18:13 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	parse_flags(t_format_spec *fs, t_format_result *fr)
 		if (!ptr)
 			break ;
 		index = ptr - FLAGS;
-		fs->flag |= 1 << index;
+		fs->flags |= 1 << index;
 		fr->format++;
 	}
 }
@@ -36,7 +36,7 @@ static void	parse_width(t_format_spec *fs, t_format_result *fr, va_list *ap)
 		if (fs->width < 0)
 		{
 			fs->width = -fs->width;
-			fs->flag |= FLAG_MINUS;
+			fs->flags |= FLAG_MINUS;
 		}
 		fr->format++;
 	}
@@ -72,16 +72,16 @@ static void	parse_precision(t_format_spec *fs, t_format_result *fr, va_list *ap)
 static void	parse_specifier(t_format_spec *fs, t_format_result *fr)
 {
 	if (!ft_strncmp(fr->format, "ll", 2))
-		fs->size = SIZE_LL;
+		fs->length = LENGTH_LL;
 	else if (!ft_strncmp(fr->format, "l", 1))
-		fs->size = SIZE_L;
+		fs->length = LENGTH_L;
 	else if (!ft_strncmp(fr->format, "hh", 2))
-		fs->size = SIZE_HH;
+		fs->length = LENGTH_HH;
 	else if (!ft_strncmp(fr->format, "h", 1))
-		fs->size = SIZE_H;
+		fs->length = LENGTH_H;
 	while (*fr->format == 'l' || *fr->format == 'h')
 		fr->format++;
-	fs->specifier = *fr->format;
+	fs->conversion = *fr->format;
 }
 
 void	parse_spec(t_format_spec *fs, t_format_result *fr, va_list *ap)
@@ -89,8 +89,8 @@ void	parse_spec(t_format_spec *fs, t_format_result *fr, va_list *ap)
 	fr->format++;
 	parse_flags(fs, fr);
 	parse_width(fs, fr, ap);
-	if (fs->flag & FLAG_MINUS && fs->flag & FLAG_ZERO)
-		fs->flag &= ~FLAG_ZERO;
+	if (fs->flags & FLAG_MINUS && fs->flags & FLAG_ZERO)
+		fs->flags &= ~FLAG_ZERO;
 	parse_precision(fs, fr, ap);
 	parse_specifier(fs, fr);
 	fr->format++;

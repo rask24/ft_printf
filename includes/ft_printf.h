@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/03 16:34:09 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/04 16:11:05 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@
 
 # define PREC_NONE -1
 
-# define SIZE_NONE 0
-# define SIZE_LL   1
-# define SIZE_L    2
-# define SIZE_HH   3
-# define SIZE_H    4
+# define LENGTH_NONE 0
+# define LENGTH_LL   1
+# define LENGTH_L    2
+# define LENGTH_HH   3
+# define LENGTH_H    4
 
 # define STR_NULL "(null)"
 
@@ -72,11 +72,11 @@ typedef struct s_format_result
 // format specification
 typedef struct s_format_spec
 {
-	int		flag;
+	int		flags;
 	int		width;
 	int		precision;
-	int		size;
-	char	specifier;
+	int		length;
+	char	conversion;
 }	t_format_spec;
 
 // integer infomation for print
