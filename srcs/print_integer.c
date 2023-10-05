@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:19:53 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/05 16:18:32 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	init_prefix(t_integer_info *info, intmax_t nb, t_format_spec *fs)
 static void	init_integer_info(
 				t_integer_info *info, intmax_t nb, t_format_spec *fs)
 {
-	info->is_signed = fs->conversion == 'd' || fs->conversion == 'i';
+	info->is_signed = (fs->conversion == 'd' || fs->conversion == 'i');
 	if (fs->conversion == 'x')
 		info->base = HEX_BASE_LOEWR;
 	else if (fs->conversion == 'X')
