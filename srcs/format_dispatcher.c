@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/05 01:35:01 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/06 11:52:29 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	format_dispatcher(
 	else if (ft_strchr("uxXo", fs->conversion))
 		unsigned_integer_dispatcher(fs, fr, ap);
 	else if (fs->conversion == 'p')
-		print_address(va_arg(*ap, uintptr_t), fs, fr);
+		print_integer(va_arg(*ap, uintptr_t), fs, fr);
 	else if (fs->conversion == 'n')
 		n_dispatcher(fs, fr, ap);
 }

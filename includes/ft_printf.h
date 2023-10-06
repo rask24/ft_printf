@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 14:20:27 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/05 01:42:06 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/06 11:58:15 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	print_str(char *str, t_format_spec *fs, t_format_result *fr);
 void	print_padding(char c, int len);
 
 void	print_integer(intmax_t nb, t_format_spec *fs, t_format_result *fr);
-void	print_address(uintptr_t ptr, t_format_spec *fs, t_format_result *fr);
 
 void	ft_putnbr_base(intmax_t nb, const char *base, bool is_signed);
 int		digits_base(intmax_t nb, size_t radix, bool is_signed);
