@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/05 16:18:32 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/06 12:11:27 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ static void	init_prefix(t_integer_info *info, intmax_t nb, t_format_spec *fs)
 		info->prefix = "+";
 	else if (info->is_signed && fs->flags & FLAG_SPACE)
 		info->prefix = " ";
-	else if (fs->flags & FLAG_HASH
-		&& !info->is_signed && fs->conversion == 'x' && nb)
+	else if (fs->flags & FLAG_HASH && fs->conversion == 'x' && nb)
 		info->prefix = HEX_PREFIX_LOWER;
-	else if (fs->flags & FLAG_HASH
-		&& !info->is_signed && fs->conversion == 'X' && nb)
+	else if (fs->flags & FLAG_HASH && fs->conversion == 'X' && nb)
 		info->prefix = HEX_PREFIX_UPPER;
+	else if (fs->conversion == 'p')
+		info->prefix = HEX_PREFIX_LOWER;
 }
 
 static void	init_integer_info(
 				t_integer_info *info, intmax_t nb, t_format_spec *fs)
 {
 	info->is_signed = (fs->conversion == 'd' || fs->conversion == 'i');
-	if (fs->conversion == 'x')
+	if (fs->conversion == 'x' || fs->conversion == 'p')
 		info->base = HEX_BASE_LOEWR;
 	else if (fs->conversion == 'X')
 		info->base = HEX_BASE_UPPER;
@@ -92,23 +92,4 @@ void	print_integer(intmax_t nb, t_format_spec *fs, t_format_result *fr)
 		print_padding(' ', info.space_width);
 	fr->cnt += info.space_width
 		+ info.prefix_width + info.zero_width + info.digits;
-}
-
-void	print_address(uintptr_t ptr, t_format_spec *fs, t_format_result *fr)
-{
-	int	space_width;
-	int	digits;
-
-	digits = digits_base(ptr, 16, false);
-	if (fs->width)
-		space_width = ft_max(fs->width - (digits + 2), 0);
-	else
-		space_width = 0;
-	if (!(fs->flags & FLAG_MINUS) && space_width)
-		print_padding(' ', space_width);
-	ft_putstr_fd(HEX_PREFIX_LOWER, STDOUT_FILENO);
-	ft_putnbr_base(ptr, HEX_BASE_LOEWR, false);
-	if (fs->flags & FLAG_MINUS && space_width)
-		print_padding(' ', space_width);
-	fr->cnt += ft_max(fs->width, digits + 2);
 }
