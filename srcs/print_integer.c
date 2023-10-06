@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:12:55 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/06 12:06:19 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/06 12:11:27 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ static void	init_prefix(t_integer_info *info, intmax_t nb, t_format_spec *fs)
 		info->prefix = "+";
 	else if (info->is_signed && fs->flags & FLAG_SPACE)
 		info->prefix = " ";
-	else if (fs->flags & FLAG_HASH
-		&& !info->is_signed && fs->conversion == 'x' && nb)
+	else if (fs->flags & FLAG_HASH && fs->conversion == 'x' && nb)
 		info->prefix = HEX_PREFIX_LOWER;
-	else if (fs->flags & FLAG_HASH
-		&& !info->is_signed && fs->conversion == 'X' && nb)
+	else if (fs->flags & FLAG_HASH && fs->conversion == 'X' && nb)
 		info->prefix = HEX_PREFIX_UPPER;
 	else if (fs->conversion == 'p')
 		info->prefix = HEX_PREFIX_LOWER;
