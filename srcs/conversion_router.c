@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_dispatcher.c                                :+:      :+:    :+:   */
+/*   conversion_router.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/06 11:52:29 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/08 18:52:44 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	signed_integer_dispatcher(
+static void	signed_integer_router(
 				t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
 	if (fs->length == LENGTH_NONE)
@@ -33,7 +33,7 @@ static void	signed_integer_dispatcher(
 		print_integer(va_arg(*ap, ssize_t), fs, fr);
 }
 
-static void	unsigned_integer_dispatcher(
+static void	unsigned_integer_router(
 				t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
 	if (fs->length == LENGTH_NONE)
@@ -54,7 +54,7 @@ static void	unsigned_integer_dispatcher(
 		print_integer(va_arg(*ap, size_t), fs, fr);
 }
 
-static void	n_dispatcher(
+static void	n_router(
 				t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
 	if (fs->length == LENGTH_NONE)
@@ -75,7 +75,7 @@ static void	n_dispatcher(
 		*va_arg(*ap, ssize_t *) = fr->cnt;
 }
 
-void	format_dispatcher(
+void	conversion_router(
 			t_format_spec *fs, t_format_result *fr, va_list *ap)
 {
 	if (fs->conversion == '%')
@@ -85,11 +85,11 @@ void	format_dispatcher(
 	else if (fs->conversion == 's')
 		print_str(va_arg(*ap, char *), fs, fr);
 	else if (fs->conversion == 'd' || fs->conversion == 'i')
-		signed_integer_dispatcher(fs, fr, ap);
+		signed_integer_router(fs, fr, ap);
 	else if (ft_strchr("uxXo", fs->conversion))
-		unsigned_integer_dispatcher(fs, fr, ap);
+		unsigned_integer_router(fs, fr, ap);
 	else if (fs->conversion == 'p')
 		print_integer(va_arg(*ap, uintptr_t), fs, fr);
 	else if (fs->conversion == 'n')
-		n_dispatcher(fs, fr, ap);
+		n_router(fs, fr, ap);
 }

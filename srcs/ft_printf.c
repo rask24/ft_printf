@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:59:33 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/04 16:16:41 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/08 18:53:31 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_printf(const char *format, ...)
 			fs = (t_format_spec){
 				FLAG_NONE, WIDTH_NONE, PREC_NONE, LENGTH_NONE, '\0'};
 			parse_spec(&fs, &fr, &ap);
-			format_dispatcher(&fs, &fr, &ap);
+			conversion_router(&fs, &fr, &ap);
 		}
 		else
 		{
