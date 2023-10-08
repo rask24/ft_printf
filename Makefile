@@ -5,7 +5,7 @@ LIBFT_DIR = $(SRC_DIR)/libft
 LIBFT_NAME = libft.a
 SRCS = $(SRC_DIR)/ft_printf.c \
 		$(SRC_DIR)/parse_spec.c \
-		$(SRC_DIR)/format_dispatcher.c \
+		$(SRC_DIR)/conversion_router.c \
 		$(SRC_DIR)/print_string.c \
 		$(SRC_DIR)/print_integer.c \
 		$(SRC_DIR)/nbr_utils.c
