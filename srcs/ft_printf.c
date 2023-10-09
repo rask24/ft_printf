@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:59:33 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/08 18:53:31 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/09 12:47:06 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			ft_putchar_fd(*fr.format, STDOUT_FILENO);
+			ft_putchar_fd(*fr.format++, STDOUT_FILENO);
 			fr.cnt++;
-			fr.format++;
 		}
 	}
 	va_end(ap);
