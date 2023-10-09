@@ -61,8 +61,18 @@ main.c
 .vscode/
 
 # tester
+## https://github.com/Tripouille/printfTester
+## git@github.com:Tripouille/printfTester.git
 printfTester
+
+## https://github.com/gavinfielder/pft
+## git@github.com:gavinfielder/pft.git
 pft
 
-# main
-main.c
+## https://github.com/paulo-santana/ft_printf_tester
+## git@github.com:paulo-santana/ft_printf_tester.git
+ft_printf_tester
+
+## https://github.com/usatie/printf-tester-tokyo
+## git@github.com:usatie/printf-tester-tokyo.git
+printf-tester-tokyo
