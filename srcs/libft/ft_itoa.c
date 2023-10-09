@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 01:28:34 by reasuke           #+#    #+#             */
-/*   Updated: 2023/09/24 17:07:48 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/09 12:38:34 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ char	*ft_itoa(int n)
 	int				digits;
 	int				is_negative;
 
-	is_negative = n < 0;
+	is_negative = 0;
+	if (n < 0)
+		is_negative = 1;
 	if (is_negative)
 		un = -n;
 	else
