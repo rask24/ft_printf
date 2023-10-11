@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:17:21 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/09 12:00:44 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/11 17:38:46 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	parse_precision(t_format_spec *fs, t_format_result *fr, va_list *ap)
 	}
 }
 
-static void	parse_specifier(t_format_spec *fs, t_format_result *fr)
+static void	parse_conversion(t_format_spec *fs, t_format_result *fr)
 {
 	if (!ft_strncmp(fr->format, "ll", 2))
 		fs->length = LENGTH_LL;
@@ -98,6 +98,6 @@ void	parse_spec(t_format_spec *fs, t_format_result *fr, va_list *ap)
 	if (fs->flags & FLAG_MINUS && fs->flags & FLAG_ZERO)
 		fs->flags &= ~FLAG_ZERO;
 	parse_precision(fs, fr, ap);
-	parse_specifier(fs, fr);
+	parse_conversion(fs, fr);
 	fr->format++;
 }
