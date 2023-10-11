@@ -6,7 +6,7 @@
 /*   By: reasuke <reasuke@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:13:31 by reasuke           #+#    #+#             */
-/*   Updated: 2023/10/08 18:52:44 by reasuke          ###   ########.fr       */
+/*   Updated: 2023/10/11 17:39:07 by reasuke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	signed_integer_router(
 	else if (fs->length == LENGTH_H)
 		print_integer((short)va_arg(*ap, int), fs, fr);
 	else if (fs->length == LENGTH_HH)
-		print_integer((char)va_arg(*ap, int), fs, fr);
+		print_integer((signed char)va_arg(*ap, int), fs, fr);
 	else if (fs->length == LENGTH_J)
 		print_integer(va_arg(*ap, intmax_t), fs, fr);
 	else if (fs->length == LENGTH_T)
